@@ -12,15 +12,15 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
         mode: mode,
         entry: paths.entry,
         output: {
-            filename: "[name].[contenthash].js",
+            filename: "[name].[contenthash:6].js",
             path: paths.build,
             clean: true
         },
         plugins: buildPlugins(options),
         module: {
-            rules: buildLoaders(),
+            rules: buildLoaders(options),
         },
-        resolve: buildResolvers(),
+        resolve: buildResolvers(options),
         devtool: isDev
             ?'inline-source-map'
             : undefined,
